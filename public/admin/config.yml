@@ -1,0 +1,69 @@
+backend:
+  name: github
+  repo: Etskyy/portfolio
+  branch: main
+  base_url: https://YOUR-NETLIFY-AUTH-SITE.netlify.app   # <-- change this, see README
+  auth_endpoint: auth
+
+# Loads the built site's own styling isn't wired in here (Decap has its own UI),
+# this just controls where saved files land and how the site rebuilds.
+publish_mode: simple
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "blog"
+    label: "Blog Posts"
+    label_singular: "Post"
+    folder: "src/content/blog"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    summary: "{{date}} — {{title}}"
+    sortable_fields: ["date", "title"]
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Tags", name: "tags", widget: "list", default: [] }
+      - label: "Project"
+        name: "project"
+        widget: "select"
+        required: false
+        hint: "Optional — attaches this post as an update on a project's page."
+        options:
+          - { label: "Junior Ranger AI", value: "junior-ranger-ai" }
+          - { label: "IFN580 — Machine Learning", value: "ifn580-machine-learning" }
+          - { label: "Beyond All Reason — Modding & Maps", value: "beyond-all-reason-modding" }
+      - { label: "Summary", name: "summary", widget: "string", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "projects"
+    label: "Projects"
+    files:
+      - name: "projects"
+        label: "Projects List"
+        file: "src/data/projects.json"
+        fields:
+          - name: "projects"
+            label: "Projects"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Slug", name: "slug", widget: "string", hint: "Used in the URL, e.g. /projects/<slug>. No spaces." }
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Role", name: "role", widget: "string" }
+              - label: "Status"
+                name: "status"
+                widget: "select"
+                options: ["active", "complete", "shelved"]
+              - { label: "Summary (short, shown on project lists)", name: "summary", widget: "string" }
+              - { label: "Description (full, shown on the project page)", name: "description", widget: "text" }
+              - { label: "Tags", name: "tags", widget: "list", default: [] }
+              - label: "Links"
+                name: "links"
+                widget: "list"
+                required: false
+                fields:
+                  - { label: "Label", name: "label", widget: "string" }
+                  - { label: "URL", name: "url", widget: "string" }

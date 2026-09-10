@@ -1,0 +1,65 @@
+---
+import { render } from 'astro:content';
+import { getProject } from '../data/projects';
+
+interface Props {
+  post: any;
+  showProjectLink?: boolean;
+}
+
+const { post, showProjectLink = true } = Astro.props;
+const { Content } = await render(post);
+const project = post.data.project ? getProject(post.data.project) : undefined;
+const dateStr = post.data.date.toLocaleDateString('en-AU', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+});
+---
+
+<article id={post.id} class="post-entry">
+  <div class="meta">
+    <time datetime={post.data.date.toISOString()}>{dateStr}</time>
+    {project && showProjectLink && (
+      <>
+        {' · '}
+        <a href={`/projects/${project.slug}`}>{project.name}</a>
+      </>
+    )}
+  </div>
+  <h2><a href={`/blog#${post.id}`}>{post.data.title}</a></h2>
+  <div class="post-entry__body">
+    <Content />
+  </div>
+  {post.data.tags.length > 0 && (
+    <div class="post-entry__tags">
+      {post.data.tags.map((t: string) => <span class="tag">{t}</span>)}
+    </div>
+  )}
+</article>
+
+<style>
+  .post-entry {
+    margin-bottom: 3rem;
+  }
+  .post-entry h2 {
+    margin: 0.35rem 0 0.75rem;
+    font-size: 1.15rem;
+  }
+  .post-entry h2 a {
+    color: var(--text);
+  }
+  .post-entry h2 a:hover {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .post-entry__body :global(p:last-child) {
+    margin-bottom: 0;
+  }
+  .post-entry__tags {
+    margin-top: 0.75rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+</style>

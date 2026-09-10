@@ -1,0 +1,44 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { projects } from '../data/projects';
+
+const posts = await getCollection('blog');
+const recentPosts = posts
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+---
+
+<Base title="Home">
+  <h1>Aiden Loxton</h1>
+  <p>
+    I build games, web apps, and interactive experiences. Based in Australia, currently
+    studying and working on personal projects — this site tracks what I'm building and
+    writing about along the way.
+  </p>
+
+  <hr class="divider" />
+
+  <h2 style="font-size: 1rem; color: var(--text-muted);">Active projects</h2>
+  {projects.map((p) => (
+    <div style="margin-bottom: 1.25rem;">
+      <a href={`/projects/${p.slug}`} style="color: var(--text); font-family: var(--font-mono); font-weight: 700;">
+        <span class={`status-dot status-dot--${p.status}`}></span>{p.name}
+      </a>
+      <p class="meta" style="margin: 0.2rem 0 0;">{p.summary}</p>
+    </div>
+  ))}
+  <p><a href="/projects">See all projects &rarr;</a></p>
+
+  <hr class="divider" />
+
+  <h2 style="font-size: 1rem; color: var(--text-muted);">Recent posts</h2>
+  {recentPosts.map((post) => (
+    <div style="margin-bottom: 1rem;">
+      <span class="meta">{post.data.date.toLocaleDateString('en-AU', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
+      {' — '}
+      <a href={`/blog#${post.id}`}>{post.data.title}</a>
+    </div>
+  ))}
+  <p><a href="/blog">Read the blog &rarr;</a></p>
+</Base>
