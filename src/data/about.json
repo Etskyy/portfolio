@@ -1,0 +1,13 @@
+{
+  "intro": "I'm a developer based in Australia with a focus on game development and full-stack web projects. I enjoy building things that are both functional and polished — from Unity games to fast, content-driven web projects.",
+  "background": "Currently studying and working on personal projects, always looking for opportunities to collaborate and create. Outside of study, that means shipping games like Turtle Warriors and Necro Ascent, tinkering with modding and map-making for Beyond All Reason, and picking up group projects like Junior Ranger AI and IFN580's machine learning coursework along the way.",
+  "skills": {
+    "gameDev": ["Unity", "C#", "Game Design"],
+    "web": ["Astro", "Next.js", "React", "TypeScript"],
+    "tools": ["Git", "Vercel", "Figma"]
+  },
+  "contact": {
+    "email": "loxton.aiden@gmail.com",
+    "linkedin": "https://linkedin.com/in/aiden-loxton"
+  }
+}

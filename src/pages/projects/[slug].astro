@@ -1,0 +1,47 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import PostEntry from '../../components/PostEntry.astro';
+import { projects } from '../../data/projects';
+
+export const getStaticPaths = (async () => {
+  return projects.map((p) => ({ params: { slug: p.slug }, props: { project: p } }));
+}) satisfies GetStaticPaths;
+
+const { project } = Astro.props;
+
+const allPosts = await getCollection('blog');
+const updates = allPosts
+  .filter((post) => post.data.project === project.slug)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<Base title={project.name} description={project.summary}>
+  <p class="meta"><a href="/projects">&larr; All projects</a></p>
+  <h1><span class={`status-dot status-dot--${project.status}`}></span>{project.name}</h1>
+  <p class="meta" style="margin-bottom: 1rem;">{project.role}</p>
+  <p>{project.description}</p>
+  <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem;">
+    {project.tags.map((t: string) => <span class="tag">{t}</span>)}
+  </div>
+  {project.links && project.links.length > 0 && (
+    <p>
+      {project.links.map((l: { label: string; url: string }, i: number) => (
+        <>
+          {i > 0 ? ' · ' : ''}<a href={l.url}>{l.label}</a>
+        </>
+      ))}
+    </p>
+  )}
+
+  <hr class="divider" />
+
+  <h2 style="font-size: 1rem; color: var(--text-muted);">Updates</h2>
+
+  {updates.length === 0 ? (
+    <p class="meta">No updates posted yet.</p>
+  ) : (
+    updates.map((post) => <PostEntry post={post} showProjectLink={false} />)
+  )}
+</Base>

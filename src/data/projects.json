@@ -1,0 +1,47 @@
+[
+  {
+    "slug": "junior-ranger-ai",
+    "name": "Junior Ranger AI",
+    "role": "Mobile UI/UX Lead",
+    "status": "active",
+    "summary": "A mobile-first environmental learning app for children, built as a university group project.",
+    "description": "A mobile-first environmental learning app aimed at children, currently being pitched for assessment. Leading the mobile UI/UX direction across the group, focused on making environmental concepts approachable for a young audience.",
+    "tags": ["Mobile", "UI/UX", "Education"]
+  },
+  {
+    "slug": "ifn580-machine-learning",
+    "name": "IFN580 — Machine Learning",
+    "role": "Group project — data preprocessing & ML",
+    "status": "active",
+    "summary": "Group coursework covering data preprocessing and machine learning tasks for QUT's IFN580 unit.",
+    "description": "Coursework for the Machine Learning unit at QUT, worked through with a small group. Assignment 1 covers data preprocessing and core ML tasks, run out of a VS Code + Jupyter setup rather than Anaconda.",
+    "tags": ["Machine Learning", "Python", "Jupyter"]
+  },
+  {
+    "slug": "beyond-all-reason-modding",
+    "name": "Beyond All Reason — Modding & Maps",
+    "role": "Solo tinkering",
+    "status": "active",
+    "summary": "Modding and map creation for the real-time strategy game Beyond All Reason.",
+    "description": "Ongoing tinkering with modding and map creation tools for Beyond All Reason, an open-source real-time strategy game. A side interest that keeps the games background from the games degree active alongside everything else on the go.",
+    "tags": ["Game Dev", "Modding"]
+  },
+  {
+    "slug": "turtle-warriors",
+    "name": "Turtle Warriors",
+    "role": "Solo developer",
+    "status": "complete",
+    "summary": "Third-person educational game following the life struggles sea turtles face.",
+    "description": "A third-person educational game that takes the player through the life struggles sea turtles face. Includes minigames exploring the early childhood and adult life of a sea turtle.",
+    "tags": ["Unity", "C#", "Game Design", "Education"]
+  },
+  {
+    "slug": "necro-ascent",
+    "name": "Necro Ascent",
+    "role": "Solo developer",
+    "status": "complete",
+    "summary": "Single-player dungeon crawler using weapon abilities to fight through each floor.",
+    "description": "A single-player dungeon crawler where the player uses various weapon abilities to defeat AI enemies and push through each floor.",
+    "tags": ["Unity", "C#", "Game Design"]
+  }
+]

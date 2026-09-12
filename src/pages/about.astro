@@ -1,0 +1,29 @@
+---
+import Base from '../layouts/Base.astro';
+import about from '../data/about.json';
+---
+
+<Base title="About" description="Background and experience.">
+  <h1>About</h1>
+  <p>{about.intro}</p>
+  <p>{about.background}</p>
+
+  <h2 style="font-size: 1rem; color: var(--text-muted); margin-top: 2rem;">Game Dev</h2>
+  <ul>
+    {about.skills.gameDev.map((skill) => <li>{skill}</li>)}
+  </ul>
+  <h2 style="font-size: 1rem; color: var(--text-muted);">Web</h2>
+  <ul>
+    {about.skills.web.map((skill) => <li>{skill}</li>)}
+  </ul>
+  <h2 style="font-size: 1rem; color: var(--text-muted);">Tools</h2>
+  <ul>
+    {about.skills.tools.map((skill) => <li>{skill}</li>)}
+  </ul>
+
+  <p style="margin-top: 2rem;">Get in touch or find my other work:</p>
+  <ul>
+    <li><a href={`mailto:${about.contact.email}`}>{about.contact.email}</a></li>
+    <li><a href={about.contact.linkedin}>LinkedIn</a></li>
+  </ul>
+</Base>
